@@ -4,7 +4,10 @@ import 'vuetify/styles'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { createVuetify } from 'vuetify'
-import { aliases, fa } from 'vuetify/iconsets/fa'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 import App from './App.vue'
 import router from './router'
@@ -15,15 +18,11 @@ const app = createApp(App)
 const vuetify = createVuetify({
   components,
   directives,
-  icons: {
-    defaultSet: 'fa',
-    aliases,
-    sets: {
-      fa,
-    }
-  }
 })
 
+library.add(faHouse, faGithub)
+
+app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(createPinia())
 app.use(router)
 app.use(vuetify)
